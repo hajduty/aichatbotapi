@@ -16,7 +16,7 @@ namespace api.Controllers
 
         public LLamaController()
         {
-            string modelPath = @"C:\Users\hajde\Downloads\Meta-Llama-3-8B-Instruct-IQ2_XXS.gguf";
+            string modelPath = @"C:\Users\Dennis Wiklund\Downloads\Meta-Llama-3-8B-Instruct-IQ2_XXS.gguf";  //TÄNKT PÅ DENNA
             var parameters = new ModelParams(modelPath)
             {
                 ContextSize = 2048,
