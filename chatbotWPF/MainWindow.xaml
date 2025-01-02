@@ -3,10 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
         xmlns:local="clr-namespace:chatbotWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1100" WindowStartupLocation="CenterScreen" Background="#663333">
+    
     <Grid>
+        
+        <Grid Name="Enter" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Ellipse Fill="White" Height="100" Width="100" Margin="8"/>
+                <Ellipse Fill="White" Height="100" Width="100" Margin="8"/>
+                <Ellipse Fill="White" Height="100" Width="100" Margin="8"/>
+            </StackPanel>
+            
+            <TextBox Name="nameB" Width="300" Height="70" Background="Beige" Grid.Row="1" Text="Ditt Namn" FontSize="50" GotFocus="ClearTextOnFocus"/>
 
+            <Button Background="Red" Grid.Row="2" Height="100" Width="250" FontSize="50" Foreground="White" Click="Button_Click">
+                Select
+            </Button>
+        </Grid>
+
+        <Grid Name="Main" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Ellipse Fill="White" Width="360" Height="360" Grid.Row="0" Grid.Column="0"/>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBox Height="220" Width="460" Grid.ColumnSpan="2" Background="LightGray" Text="Text to send" FontSize="30" GotFocus="ClearTextOnFocus"/>
+
+                <Button Width="200" Height="60" Grid.Row="1" Grid.Column="0" FontSize="37" Margin="10,0,0,0" Click="Button_Click_1">
+                    SEND
+                </Button>
+                <Button Width="200" Height="60" Grid.Row="1" Grid.Column="1" FontSize="37" Margin="10,0,20,0">
+                    Save to file
+                </Button>
+            </Grid>
+
+            <TextBlock IsEnabled="False" Background="White" Height="350" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="OOOOOOOOOOOOOOOOOOOOOOO"/>
+        </Grid>
     </Grid>
 </Window>
