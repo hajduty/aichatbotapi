@@ -33,10 +33,10 @@ namespace api.Controllers
 		// In case someone picks an ID that’s not in our dictionary, pick a default:
 		private const string DefaultSystemPromptId = "donald-trump";
 
-		public LLamaController()
+		public LLamaController(IConfiguration configuration)
 		{
 			// Modify this to your own local path/model
-			string modelPath = @"C:\Users\H\Downloads\Llama-3.2-1B-Instruct-Q4_K_L.gguf";
+			string modelPath = configuration["ModelPath"]!;
 			var parameters = new ModelParams(modelPath)
 			{
 				ContextSize = 2048,
