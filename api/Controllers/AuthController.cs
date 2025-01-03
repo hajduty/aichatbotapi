@@ -1,6 +1,8 @@
 ﻿using api.Data;
 using api.Models;
+using api.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.WebSockets;
 
 namespace api.Controllers
 {
@@ -9,9 +11,11 @@ namespace api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public AuthController(AppDbContext context)
+        private readonly TokenService _tokenService;
+        public AuthController(AppDbContext context, TokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
 
         [HttpPost("login")]
@@ -34,9 +38,13 @@ namespace api.Controllers
                 return Unauthorized();
             }
 
-            // Skicka med jwt token
+            var response = new
+            {
+                Email = user.Email,
+                Token = _tokenService.GenerateToken(user)
+            };
 
-            return Ok();
+            return Ok(response);
         }
 
         [HttpPost("register")]
@@ -57,7 +65,13 @@ namespace api.Controllers
             _context.Users.Add(register);
             _context.SaveChanges();
 
-            return CreatedAtAction(nameof(Login), new { email = register.Email }, register);
+            var response = new
+            {
+                Email = register.Email,
+                Token = _tokenService.GenerateToken(register)
+            };
+
+            return CreatedAtAction(nameof(Login), response);
         }
     }
 }
