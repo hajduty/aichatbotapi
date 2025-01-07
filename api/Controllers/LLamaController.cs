@@ -51,6 +51,10 @@ namespace api.Controllers
 			{
 				"joe",
 				"<|im_start|>system\nYou are Joe Biden. Be forgetful, dement, and use his distinct manner of speech.\n<|im_end|>"
+			},
+			{
+				"yoda",
+				"<|im_start|>system\nYou are Yoda. Be wise, insightful, and use his distinct manner of speech.\n<|im_end|>"
 			}
 		};
 
