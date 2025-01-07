@@ -9,20 +9,22 @@
         Title="MainWindow" Height="800" Width="1100" WindowStartupLocation="CenterScreen" Background="#663333">
     
     <Grid>
-        
-        <Grid Name="Enter" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450" Visibility="Visible">
+        <Grid Name="Enter" Visibility="Visible" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Ellipse Fill="White" Height="100" Width="100" Margin="8"/>
-                <Ellipse Fill="White" Height="100" Width="100" Margin="8"/>
-                <Ellipse Fill="White" Height="100" Width="100" Margin="8"/>
-            </StackPanel>
             
-            <TextBox Name="nameB" Width="300" Height="70" Background="Beige" Grid.Row="1" Text="Ditt Namn" FontSize="50" GotFocus="ClearTextOnFocus"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Ellipse Name="Button1" Fill="White" Height="100" Width="100" Margin="8" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"/>
+                <Ellipse Name="Button2" Fill="White" Height="100" Width="100" Margin="8" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"/>
+                <Ellipse Name="Button3" Fill="White" Height="100" Width="100" Margin="8" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"/>
+            </StackPanel>
+
+            <TextBlock Name="Error" Text="" Foreground="White" Height="70" Width="350" Grid.Row="1" VerticalAlignment="Top" FontSize="50" Margin="10,0,0,20"/>
+
+            <TextBox Name="nameB" Width="300" Height="70" Background="Beige" Grid.Row="1" Text="Ditt Namn" FontSize="50" GotFocus="ClearTextOnFocus" Margin="0,10,0,0"/>
 
             <Button Background="Red" Grid.Row="2" Height="100" Width="250" FontSize="50" Foreground="White" Click="Button_Click">
                 Select
@@ -38,8 +40,15 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
-            <Ellipse Fill="White" Width="360" Height="360" Grid.Row="0" Grid.Column="0"/>
+
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <Ellipse Fill="White" Width="360" Height="360"/>
+                <TextBlock Name="user" Background="Green" Width="400" Height="50" VerticalAlignment="Bottom" Grid.Row="1" Foreground="Red" FontSize="36"/>
+            </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -51,17 +60,17 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBox Height="220" Width="460" Grid.ColumnSpan="2" Background="LightGray" Text="Text to send" FontSize="30" GotFocus="ClearTextOnFocus"/>
+                <TextBox Name="textToSend" Height="220" Width="460" Grid.ColumnSpan="2" Background="LightGray" Text="Text to send" FontSize="30" TextWrapping="Wrap" GotFocus="ClearTextOnFocus"/>
 
-                <Button Width="200" Height="60" Grid.Row="1" Grid.Column="0" FontSize="37" Margin="10,0,0,0" Click="Button_Click_1">
+                <Button Width="200" Height="60" Grid.Row="1" Grid.Column="0" FontSize="37" Margin="10,0,0,0" Click="Button_Send_Click">
                     SEND
                 </Button>
-                <Button Width="200" Height="60" Grid.Row="1" Grid.Column="1" FontSize="37" Margin="10,0,20,0">
+                <Button Width="200" Height="60" Grid.Row="1" Grid.Column="1" FontSize="37" Margin="10,0,20,0" Click="Button_Click_2">
                     Save to file
                 </Button>
             </Grid>
 
-            <TextBlock IsEnabled="False" Background="White" Height="350" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="OOOOOOOOOOOOOOOOOOOOOOO"/>
+            <TextBlock Name="chatHistory" IsEnabled="False" Background="White" Height="350" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
         </Grid>
     </Grid>
 </Window>
