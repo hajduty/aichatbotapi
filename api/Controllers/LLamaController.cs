@@ -79,7 +79,8 @@ namespace api.Controllers
 			};
 		}
 
-		[HttpPost("send/{presidentId?}")]
+		// TODO: Byt [FromBody] Chathistory.Message till modell som finns i WPF, "Send"
+		[HttpPost("send/{presidentId?}")] 
 		public async Task<IActionResult> SendMessage(
 			[FromRoute] string presidentId,
 			[FromBody] ChatHistory.Message userInput)

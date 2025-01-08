@@ -41,8 +41,17 @@ namespace chatbotWPF
 
         private void Button_Send_Click(object sender, RoutedEventArgs e)
         {
+            // TODO: Skickas 
             chatHistory.Text += textToSend.Text;
             textToSend.Text = string.Empty;
+            _ = APIConnection.Login("test","test");
+
+            Send prompt = new Send();
+            prompt.Target = test.Target;
+            prompt.Name = test.Name;
+            prompt.Message = chatHistory.Text;
+
+            _ = APIConnection.SendPrompt(prompt);
             //Enter.Visibility = Visibility.Visible;
             //Main.Visibility = Visibility.Hidden;
         }
