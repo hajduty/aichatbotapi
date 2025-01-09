@@ -44,6 +44,14 @@ namespace chatbotWPF
             chatHistory.Text += "You: " + textToSend.Text + "\n";
             chatHistory.Text += "Bot: " + "Jag håller med!" + "\n";
             textToSend.Text = string.Empty;
+            _ = APIConnection.Login("test","test");
+
+            Send prompt = new Send();
+            prompt.Target = test.Target;
+            prompt.Name = test.Name;
+            prompt.Message = chatHistory.Text;
+
+            _ = APIConnection.SendPrompt(prompt);
             //Enter.Visibility = Visibility.Visible;
             //Main.Visibility = Visibility.Hidden;
         }
