@@ -7,107 +7,97 @@ using System.Windows.Shapes;
 
 namespace chatbotWPF
 {
-    public partial class MainWindow : Window
-    {
-        FirstSend test = new FirstSend();
-        public MainWindow()
-        {
-            InitializeComponent();
+	public partial class MainWindow : Window
+	{
+		FirstSend test = new FirstSend();
 
-            this.DataContext = test;
-        }
+		public MainWindow()
+		{
+			InitializeComponent();
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (test.Target == 0)
-            {
-                Error.Text = "   Välj Person!";
-            }
+			this.DataContext = test;
+		}
 
-            else if (nameB.Text == "Ditt Namn")
-            {
-                Error.Text = "Skriv ett namn!";
-            }
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			if (test.Target == 0)
+			{
+				Error.Text = "   Välj Person!";
+			}
+			else if (nameB.Text == "Ditt Namn")
+			{
+				Error.Text = "Skriv ett namn!";
+			}
+			else if (!string.IsNullOrEmpty(nameB.Text))
+			{
+				Enter.Visibility = Visibility.Hidden;
+				Main.Visibility = Visibility.Visible;
+			}
 
-            else if (!string.IsNullOrEmpty(nameB.Text))
-            {
-                Enter.Visibility = Visibility.Hidden;
-                Main.Visibility = Visibility.Visible;
-            }
+			test.Name = nameB.Text.ToString();
+			user.Text = test.Name + " " + test.Target;
+		}
 
-            test.Name = nameB.Text.ToString();
-            user.Text = test.Name+" "+test.Target;
-        }
+		private void Button_Send_Click(object sender, RoutedEventArgs e)
+		{
+			// Add message to chat history
+			chatHistory.Text += textToSend.Text;
+			textToSend.Text = string.Empty;
 
-        private void Button_Send_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Skickas 
-            chatHistory.Text += textToSend.Text;
-            textToSend.Text = string.Empty;
-            _ = APIConnection.Login("test","test");
+			// Simulated API call
+			_ = APIConnection.Login("test", "test");
 
-            Send prompt = new Send();
-            prompt.Target = test.Target;
-            prompt.Name = test.Name;
-            prompt.Message = chatHistory.Text;
+			Send prompt = new Send
+			{
+				Target = test.Target,
+				Name = test.Name,
+				Message = chatHistory.Text
+			};
 
-            _ = APIConnection.SendPrompt(prompt);
-            //Enter.Visibility = Visibility.Visible;
-            //Main.Visibility = Visibility.Hidden;
-        }
+			_ = APIConnection.SendPrompt(prompt);
+		}
 
-        private void ClearTextOnFocus(object sender, RoutedEventArgs e)
-        {
-            ((TextBox)sender).Text = string.Empty;
-        }
+		private void ClearTextOnFocus(object sender, RoutedEventArgs e)
+		{
+			((TextBox)sender).Text = string.Empty;
+		}
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            //string fileName = $"{DateTime.Now.ToString("yyyy-M-dd--HH-mm-ss")}.txt";
-            //string textToAdd = chatHistory.Text;
-            //FileStream fs = null;
-            //try
-            //{
-            //    fs = new FileStream(fileName, FileMode.CreateNew);
-            //    using (StreamWriter writer = new StreamWriter(fs))
-            //    {
-            //        writer.Write(textToAdd);
-            //    }
-            //}
-            //finally
-            //{
-            //    if (fs != null)
-            //        fs.Dispose();
-            //}
+		private void Button_Click_2(object sender, RoutedEventArgs e)
+		{
+			// Save to file or close application
+			this.Close();
+		}
 
-            this.Close();
-        }
+		private void Ellipse_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			// Reset all ellipse fills to white and borders to transparent
+			Button1.Fill = Brushes.White;
+			Button2.Fill = Brushes.White;
+			Button3.Fill = Brushes.White;
 
-        private void Ellipse_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Button1.Fill = Brushes.White;
-            Button2.Fill = Brushes.White;
-            Button3.Fill = Brushes.White;
+			Border1.BorderBrush = Brushes.Transparent;
+			Border2.BorderBrush = Brushes.Transparent;
+			Border3.BorderBrush = Brushes.Transparent;
 
-            var clickEllipse = sender as Ellipse;
-
-            if (clickEllipse == Button1)
-            {
-                Button1.Fill = Brushes.Blue;
-                test.Target = 1;
-
-            }
-            if (clickEllipse == Button2)
-            {
-                Button2.Fill = Brushes.Blue;
-                test.Target = 2;
-
-            }
-            if (clickEllipse == Button3)
-            {
-                Button3.Fill = Brushes.Blue;
-                test.Target = 3;
-            }
-        }
-    }
+			// Handle selection for the clicked ellipse
+			if (sender == Button1)
+			{
+				Button1.Fill = Brushes.Blue;
+				Border1.BorderBrush = Brushes.Green;
+				test.Target = 1;
+			}
+			else if (sender == Button2)
+			{
+				Button2.Fill = Brushes.Blue;
+				Border2.BorderBrush = Brushes.Green;
+				test.Target = 2;
+			}
+			else if (sender == Button3)
+			{
+				Button3.Fill = Brushes.Blue;
+				Border3.BorderBrush = Brushes.Green;
+				test.Target = 3;
+			}
+		}
+	}
 }

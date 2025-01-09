@@ -3,35 +3,57 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
         xmlns:local="clr-namespace:chatbotWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1100" WindowStartupLocation="CenterScreen" Background="#663333">
-    
+        Title="MainWindow" Height="800" Width="1100" WindowStartupLocation="CenterScreen"
+        Background="#1A1A1A">
+
     <Grid>
-        <Grid Name="Enter" Visibility="Visible" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450" >
+        <Grid Name="Enter" Visibility="Visible" Background="#2C2C2C" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Ellipse Name="Button1" Fill="White" Height="100" Width="100" Margin="8" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"/>
-                <Ellipse Name="Button2" Fill="White" Height="100" Width="100" Margin="8" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"/>
-                <Ellipse Name="Button3" Fill="White" Height="100" Width="100" Margin="8" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown"/>
+                <!-- First Picture with Border -->
+                <Border Name="Border1" BorderThickness="4" BorderBrush="Transparent" CornerRadius="50" Margin="8">
+                    <Ellipse Name="Button1" Width="100" Height="100" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="C:\Users\H\source\repos\chatbotV2\chatbotWPF\Images\38dbabe5-5ac4-4749-8adb-4b50e559be77.jpg" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Border>
+                <!-- Second Picture with Border -->
+                <Border Name="Border2" BorderThickness="4" BorderBrush="Transparent" CornerRadius="50" Margin="8">
+                    <Ellipse Name="Button2" Width="100" Height="100" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="C:\Users\H\source\repos\chatbotV2\chatbotWPF\Images\download.jpg" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Border>
+                <!-- Third Picture with Border -->
+                <Border Name="Border3" BorderThickness="4" BorderBrush="Transparent" CornerRadius="50" Margin="8">
+                    <Ellipse Name="Button3" Width="100" Height="100" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="C:\Users\H\source\repos\chatbotV2\chatbotWPF\Images\flat,750x,075,f-pad,750x1000,f8f8f8.jpg" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Border>
             </StackPanel>
 
-            <TextBlock Name="Error" Text="" Foreground="White" Height="70" Width="350" Grid.Row="1" VerticalAlignment="Top" FontSize="50" Margin="10,0,0,20"/>
+            <TextBlock Name="Error" Text="" Foreground="#E74C3C" Height="70" Width="350" Grid.Row="1" VerticalAlignment="Top" FontSize="24" Margin="10,0,0,20" TextAlignment="Center"/>
 
-            <TextBox Name="nameB" Width="300" Height="70" Background="Beige" Grid.Row="1" Text="Ditt Namn" FontSize="50" GotFocus="ClearTextOnFocus" Margin="0,10,0,0"/>
+            <TextBox Name="nameB" Width="300" Height="50" Background="#333333" Foreground="#FFFFFF" BorderBrush="#5A5A5A" Grid.Row="1" Text="Enter your name" FontSize="25" GotFocus="ClearTextOnFocus" Margin="0,10,0,0"/>
 
-            <Button Background="Red" Grid.Row="2" Height="100" Width="250" FontSize="50" Foreground="White" Click="Button_Click">
+            <Button Background="#4CAF50" Grid.Row="2" Height="50" Width="250" FontSize="25" Foreground="#FFFFFF" Click="Button_Click">
                 Select
             </Button>
         </Grid>
 
-        <Grid Name="Main" Visibility="Hidden">
+        <!-- Main Chat Page -->
+        <Grid Name="Main" Visibility="Hidden" Background="#1A1A1A">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -46,8 +68,9 @@
                     <RowDefinition Height="80*"/>
                     <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
-                <Ellipse Fill="White" Width="360" Height="360"/>
-                <TextBlock Name="user" Background="Green" Width="400" Height="50" VerticalAlignment="Bottom" Grid.Row="1" Foreground="Red" FontSize="36"/>
+                <!-- Profile Section -->
+                <Ellipse Fill="#FFFFFF" Width="360" Height="360"/>
+                <TextBlock Name="user" Background="#333333" Width="400" Height="50" VerticalAlignment="Bottom" Grid.Row="1" Foreground="#FFFFFF" FontSize="24" TextAlignment="Center"/>
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">
@@ -60,17 +83,20 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBox Name="textToSend" Height="220" Width="460" Grid.ColumnSpan="2" Background="LightGray" Text="Text to send" FontSize="30" TextWrapping="Wrap" GotFocus="ClearTextOnFocus"/>
+                <!-- Message Input -->
+                <TextBox Name="textToSend" Height="220" Width="460" Grid.ColumnSpan="2" Background="#333333" Foreground="#FFFFFF" BorderBrush="#5A5A5A" Text="Type your message..." FontSize="16" TextWrapping="Wrap" GotFocus="ClearTextOnFocus"/>
 
-                <Button Width="200" Height="60" Grid.Row="1" Grid.Column="0" FontSize="37" Margin="10,0,0,0" Click="Button_Send_Click">
-                    SEND
+                <!-- Send and Save Buttons -->
+                <Button Width="200" Height="50" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="10,0,0,0" Background="#4CAF50" Foreground="#FFFFFF" Click="Button_Send_Click">
+                    Send
                 </Button>
-                <Button Width="200" Height="60" Grid.Row="1" Grid.Column="1" FontSize="37" Margin="10,0,20,0" Click="Button_Click_2">
+                <Button Width="200" Height="50" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="10,0,20,0" Background="#555555" Foreground="#FFFFFF" Click="Button_Click_2">
                     Save to file
                 </Button>
             </Grid>
 
-            <TextBlock Name="chatHistory" IsEnabled="False" Background="White" Height="350" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+            <!-- Chat History -->
+            <TextBlock Name="chatHistory" IsEnabled="False" Background="#2C2C2C" Foreground="#FFFFFF" Height="350" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap" FontSize="14" Padding="10"/>
         </Grid>
     </Grid>
 </Window>
