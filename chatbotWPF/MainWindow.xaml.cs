@@ -41,8 +41,8 @@ namespace chatbotWPF
 
         private void Button_Send_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Skickas 
-            chatHistory.Text += textToSend.Text;
+            chatHistory.Text += "You: " + textToSend.Text + "\n";
+            chatHistory.Text += "Bot: " + "Jag håller med!" + "\n";
             textToSend.Text = string.Empty;
             _ = APIConnection.Login("test","test");
 
@@ -108,6 +108,13 @@ namespace chatbotWPF
                 Button3.Fill = Brushes.Blue;
                 test.Target = 3;
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //Checka Inloggning
+            Login.Visibility = Visibility.Collapsed;
+            Enter.Visibility = Visibility.Visible;
         }
     }
 }
