@@ -28,5 +28,13 @@ namespace api.Services
 
             await File.WriteAllTextAsync(filePath, json);
         }
+
+        public async Task<ChatHistory> GetHistoryAsync(string sessionId)
+        {
+            string filePath = Path.Combine(HistoryFolder, $"{sessionId}.json");
+            string json = await File.ReadAllTextAsync(filePath);
+
+            return JsonSerializer.Deserialize<ChatHistory>(json)!;
+        }
     }
 }

@@ -8,6 +8,7 @@ using api.Services;
 
 namespace api.Controllers
 {
+	// TODO: kör [Authorize] senare i hela controllern
 	[ApiController]
 	[Route("[controller]")]
 	public class LLamaController : ControllerBase
@@ -16,8 +17,8 @@ namespace api.Controllers
 		private readonly InferenceParams _inferenceParams;
 		private readonly HistoryService _historyService;
 
-        // Store several system prompts mapped to different historical figures
-        private static readonly Dictionary<string, string> _systemPrompts = new()
+		// Store several system prompts mapped to different historical figures
+		private static readonly Dictionary<string, string> _systemPrompts = new()
 		{
 			{
 				"donald-trump",
@@ -111,25 +112,38 @@ namespace api.Controllers
 				$"<|im_start|>user\n{send.Message}<|im_end|>\n" +
 				$"<|im_start|>assistant\n";
 
-            var response = string.Empty;
-            await foreach (var text in _executor.InferAsync(prompt, _inferenceParams))
-            {
-                response += text;
-            }
+			var response = string.Empty;
+			await foreach (var text in _executor.InferAsync(prompt, _inferenceParams))
+			{
+				response += text;
+			}
 
-            // Don’t include anything after or including <|im_end|>
-            response = response.Split("<|im_end|>").FirstOrDefault()?.Trim() ?? response.Trim();
+			// Don’t include anything after or including <|im_end|>
+			response = response.Split("<|im_end|>").FirstOrDefault()?.Trim() ?? response.Trim();
 
-            // Save the session history using HistoryService
+			// Save the session history using HistoryService
 			// TODO: error handling?
-            var newHistory = new ChatHistory();
+			var newHistory = new ChatHistory();
 			newHistory.AddMessage(AuthorRole.User, send.Message);
-            newHistory.AddMessage(AuthorRole.Assistant, response);
+			newHistory.AddMessage(AuthorRole.Assistant, response);
 
-            string sessionId = _historyService.GenerateSessionId();
-            await _historyService.SaveHistoryAsync(sessionId, newHistory);
+			string sessionId = _historyService.GenerateSessionId();
+			await _historyService.SaveHistoryAsync(sessionId, newHistory);
 
-            return Ok(new { Response = response });
+			return Ok(new { Response = response });
+		}
+
+		[HttpGet("chat/{sessionId}")]
+		public async Task<IActionResult> GetChatHistory(string sessionId)
+		{
+			var json = await _historyService.GetHistoryAsync(sessionId);
+
+			if (json != null)
+			{
+				return Ok(json);
+			}
+
+			return NotFound();
 		}
 	}
 }
