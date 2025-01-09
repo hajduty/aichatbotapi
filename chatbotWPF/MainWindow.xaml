@@ -9,7 +9,7 @@
         Title="MainWindow" Height="800" Width="1100" WindowStartupLocation="CenterScreen" Background="#663333">
     
     <Grid>
-        <Grid Name="Login" Visibility="Hidden" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
+        <Grid Name="Login" Visibility="Visible" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="30*"/>
@@ -42,7 +42,7 @@
             </Button>
         </Grid>
 
-        <Grid Name="Main" Visibility="Visible">
+        <Grid Name="Main" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
