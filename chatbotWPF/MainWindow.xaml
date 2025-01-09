@@ -9,7 +9,18 @@
         Title="MainWindow" Height="800" Width="1100" WindowStartupLocation="CenterScreen" Background="#663333">
     
     <Grid>
-        <Grid Name="Enter" Visibility="Visible" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450" >
+        <Grid Name="Login" Visibility="Visible" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <TextBox Height="72" Width="350" FontSize="50" Text="Username" GotFocus="ClearTextOnFocus"/>
+            <TextBox Height="72" Width="350" Grid.Row="1" FontSize="50" Text="Password" GotFocus="ClearTextOnFocus"/>
+            <Button Height="100" Width="300" Grid.Row="2" Content="Login" Background="Red" Foreground="White" FontSize="60" Click="Button_Click_1"/>
+        </Grid>
+        
+        <Grid Name="Enter" Visibility="Hidden" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -70,7 +81,7 @@
                 </Button>
             </Grid>
 
-            <TextBlock Name="chatHistory" IsEnabled="False" Background="White" Height="350" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+            <TextBlock Name="chatHistory" IsEnabled="False" Background="White" Height="350" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20" TextWrapping="Wrap"/>
         </Grid>
     </Grid>
 </Window>
