@@ -3,15 +3,19 @@ using LLama.Sampling;
 using LLama;
 using Microsoft.AspNetCore.Mvc;
 using LLama.Abstractions;
+using api.Models;
+using api.Services;
 
 namespace api.Controllers
 {
+	// TODO: kör [Authorize] senare i hela controllern
 	[ApiController]
 	[Route("[controller]")]
 	public class LLamaController : ControllerBase
 	{
 		private readonly InteractiveExecutor _executor;
 		private readonly InferenceParams _inferenceParams;
+		private readonly HistoryService _historyService;
 
 		// Store several system prompts mapped to different historical figures
 		private static readonly Dictionary<string, string> _systemPrompts = new()
@@ -57,7 +61,7 @@ namespace api.Controllers
 		// In case someone picks an ID that’s not in our dictionary, pick a default:
 		private const string DefaultSystemPromptId = "donald-trump";
 
-		public LLamaController(IConfiguration configuration)
+		public LLamaController(IConfiguration configuration, HistoryService historyService)
 		{
 			// Modify this to your own local path/model
 			string modelPath = configuration["ModelPath"]!;
@@ -77,15 +81,16 @@ namespace api.Controllers
 				MaxTokens = 2048,
 				AntiPrompts = new List<string> { "<|im_end|>", "User:", "Assistant:" }
 			};
+			_historyService = historyService;
 		}
 
 		// TODO: Byt [FromBody] Chathistory.Message till modell som finns i WPF, "Send"
 		[HttpPost("send/{presidentId?}")] 
 		public async Task<IActionResult> SendMessage(
 			[FromRoute] string presidentId,
-			[FromBody] ChatHistory.Message userInput)
+			[FromBody] Send send)
 		{
-			if (string.IsNullOrWhiteSpace(userInput.Content))
+			if (string.IsNullOrWhiteSpace(send.Message))
 				return BadRequest("User input cannot be empty.");
 
 			// Look up the system prompt by ID, or fall back to default if not found
@@ -105,7 +110,7 @@ namespace api.Controllers
 			// Construct the final prompt with user’s message
 			var prompt =
 				$"{systemPrompt}" +          // e.g. You are Abraham Lincoln...
-				$"<|im_start|>user\n{userInput.Content}<|im_end|>\n" +
+				$"<|im_start|>user\n{send.Message}<|im_end|>\n" +
 				$"<|im_start|>assistant\n";
 
 			var response = string.Empty;
@@ -117,7 +122,29 @@ namespace api.Controllers
 			// Don’t include anything after or including <|im_end|>
 			response = response.Split("<|im_end|>").FirstOrDefault()?.Trim() ?? response.Trim();
 
+			// Save the session history using HistoryService
+			// TODO: error handling?
+			var newHistory = new ChatHistory();
+			newHistory.AddMessage(AuthorRole.User, send.Message);
+			newHistory.AddMessage(AuthorRole.Assistant, response);
+
+			string sessionId = _historyService.GenerateSessionId();
+			await _historyService.SaveHistoryAsync(sessionId, newHistory);
+
 			return Ok(new { Response = response });
+		}
+
+		[HttpGet("chat/{sessionId}")]
+		public async Task<IActionResult> GetChatHistory(string sessionId)
+		{
+			var json = await _historyService.GetHistoryAsync(sessionId);
+
+			if (json != null)
+			{
+				return Ok(json);
+			}
+
+			return NotFound();
 		}
 	}
 }
