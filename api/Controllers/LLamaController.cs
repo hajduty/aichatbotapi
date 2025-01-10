@@ -86,15 +86,30 @@ namespace api.Controllers
 
 		// TODO: Byt [FromBody] Chathistory.Message till modell som finns i WPF, "Send"
 		[HttpPost("send/{presidentId?}")] 
-		public async Task<IActionResult> SendMessage(
-			[FromRoute] string presidentId,
-			[FromBody] Send send)
+		public async Task<IActionResult> SendMessage([FromRoute] string presidentId, [FromBody] Send send)
 		{
 			if (string.IsNullOrWhiteSpace(send.Message))
 				return BadRequest("User input cannot be empty.");
 
-			// Look up the system prompt by ID, or fall back to default if not found
-			if (string.IsNullOrEmpty(presidentId))
+			if (send.Message.Length > 2048)
+                return BadRequest("User input cannot exceed 2048 characters.");
+
+			ChatSession session = new ChatSession(_executor, new ChatHistory());
+            ChatHistory history = new ChatHistory();
+            if (send.SessionId != null)
+			{
+                history = await _historyService.GetHistoryAsync(send.SessionId);
+
+                if (history == null)
+                {
+                    return NotFound("Session not found.");
+                }
+
+                session = new ChatSession(_executor, history);
+            }
+
+            // Look up the system prompt by ID, or fall back to default if not found
+            if (string.IsNullOrEmpty(presidentId))
 			{
 				presidentId = DefaultSystemPromptId;
 			}
@@ -107,13 +122,20 @@ namespace api.Controllers
 			// Add the system prompt to the prompt text
 			var systemPrompt = _systemPrompts[presidentId.ToLower()];
 
-			// Construct the final prompt with user’s message
-			var prompt =
-				$"{systemPrompt}" +          // e.g. You are Abraham Lincoln...
-				$"<|im_start|>user\n{send.Message}<|im_end|>\n" +
-				$"<|im_start|>assistant\n";
 
-			var response = string.Empty;
+			// Construct history string from ChatHistory object
+            var historyText = string.Join("\n", history.Messages.Select(message =>
+                message.AuthorRole == AuthorRole.User ? $"<|im_start|>user\n{message.Content}<|im_end|>" : $"<|im_start|>assistant\n{message.Content}<|im_end|>"));
+
+			Console.WriteLine(historyText);
+            // Construct the final prompt with system prompt, history, and current user input
+            var prompt =
+                $"{systemPrompt}\n" +  // Add the system prompt
+                $"{historyText}\n" +   // Include session history messages
+                $"<|im_start|>user\n{send.Message}<|im_end|>\n" + // Add the new user message
+                $"<|im_start|>assistant\n";  // Prepare for assistant response
+
+            var response = string.Empty;
 			await foreach (var text in _executor.InferAsync(prompt, _inferenceParams))
 			{
 				response += text;
@@ -124,14 +146,13 @@ namespace api.Controllers
 
 			// Save the session history using HistoryService
 			// TODO: error handling?
-			var newHistory = new ChatHistory();
-			newHistory.AddMessage(AuthorRole.User, send.Message);
-			newHistory.AddMessage(AuthorRole.Assistant, response);
+			history.AddMessage(AuthorRole.User, send.Message);
+            history.AddMessage(AuthorRole.Assistant, response);
 
-			string sessionId = _historyService.GenerateSessionId();
-			await _historyService.SaveHistoryAsync(sessionId, newHistory);
+			string sessionId = send.SessionId ?? _historyService.GenerateSessionId();
+            await _historyService.SaveHistoryAsync(sessionId, history);
 
-			return Ok(new { Response = response });
+			return Ok(new { Response = response, SessionId = sessionId });
 		}
 
 		[HttpGet("chat/{sessionId}")]
