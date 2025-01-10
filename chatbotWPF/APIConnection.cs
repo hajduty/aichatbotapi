@@ -6,12 +6,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace chatbotWPF
 {
     static class APIConnection
     {
-        static public async Task Login(string email, string password)
+        static public async Task<bool> Login(string email, string password)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -35,12 +36,19 @@ namespace chatbotWPF
                     HttpResponseMessage response = await client.PostAsync(apiUrl, content);
                     response.EnsureSuccessStatusCode(); // Throw if not a success code
 
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+
                     string responseBody = await response.Content.ReadAsStringAsync();
                     Debug.WriteLine("Response from server: " + responseBody);
+                    return false;
                 }
                 catch (HttpRequestException e)
                 {
                     Console.WriteLine("Request error: " + e.Message);
+                    return false;
                 }
             }
         }

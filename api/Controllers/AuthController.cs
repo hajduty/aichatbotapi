@@ -21,7 +21,6 @@ namespace api.Controllers
         [HttpPost("login")]
         public IActionResult Login(User login)
         {
-            Console.WriteLine("Test");
             if (!ModelState.IsValid)
             {
                 return BadRequest();
@@ -38,7 +37,6 @@ namespace api.Controllers
             {
                 return Unauthorized();
             }
-
             var response = new
             {
                 Email = user.Email,

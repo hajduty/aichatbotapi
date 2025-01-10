@@ -44,14 +44,8 @@ namespace chatbotWPF
             chatHistory.Text += "You: " + textToSend.Text + "\n";
             chatHistory.Text += "Bot: " + "Jag håller med!" + "\n";
             textToSend.Text = string.Empty;
-            _ = APIConnection.Login("test","test");
 
-            Send prompt = new Send();
-            prompt.Target = test.Target;
-            prompt.Name = test.Name;
-            prompt.Message = chatHistory.Text;
-
-            _ = APIConnection.SendPrompt(prompt);
+            
             //Enter.Visibility = Visibility.Visible;
             //Main.Visibility = Visibility.Hidden;
         }
@@ -110,11 +104,28 @@ namespace chatbotWPF
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            var hand = await APIConnection.Login("test", "test");       //Ändra så den checkar vad du skriver
+
+            if (hand == true) 
+            {
+                MessageBox.Show("True");
+                Login.Visibility = Visibility.Collapsed;
+                Enter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("False");
+            }
+
+            //Send prompt = new Send();
+            //prompt.Target = test.Target;
+            //prompt.Name = test.Name;
+            //prompt.Message = chatHistory.Text;
+            //_ = APIConnection.SendPrompt(prompt);
+
             //Checka Inloggning
-            Login.Visibility = Visibility.Collapsed;
-            Enter.Visibility = Visibility.Visible;
         }
     }
 }
