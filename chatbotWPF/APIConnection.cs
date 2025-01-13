@@ -55,32 +55,24 @@ namespace chatbotWPF
 
         // TODO: Se till att vi skickar rätt JSON som API vill ha, just nu skickas modellen "Send", byt i API
 
-        static public async Task SendPrompt(Send prompt)
+        static public async Task SendPrompt(Send prompt, string presidentId)
         {
             using (HttpClient client = new HttpClient())
             {
-                try
-                {
-                    // Replace with your API URL
-                    string apiUrl = $"https://localhost:7006/api/LLaMa/send/" + prompt.Target;
 
-                    // Serialize the data to JSON
-                    string jsonData = JsonConvert.SerializeObject(prompt);
-                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                    Debug.WriteLine(apiUrl);
-                    // Send POST request
-                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                string apiUrl = $"https://localhost:7006/api/LLaMa/send/" + presidentId;
 
-                    response.EnsureSuccessStatusCode(); // Throw if not a success code
+                string jsonData = JsonConvert.SerializeObject(prompt);
 
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    Debug.WriteLine("Response from server: " + responseBody);
-                    MessageBox.Show("Response from server: " + responseBody);
-                }
-                catch (HttpRequestException e)
-                {
-                    Console.WriteLine("Request error: " + e.Message);
-                }
+                var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                Debug.WriteLine(jsonData);
+
+                Debug.WriteLine(response);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
             }
         }
     }
