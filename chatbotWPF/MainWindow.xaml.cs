@@ -106,9 +106,10 @@ namespace chatbotWPF
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var hand = await APIConnection.Login("test", "test");       //Ändra så den checkar vad du skriver
+            //Fel hantering | Fel lösen / namn eller server problem, just nu bara Ja eller Nej
+            var loginAttempt = await APIConnection.Login(loginName.Text, loginPass.Text);
 
-            if (hand == true) 
+            if (loginAttempt == true) 
             {
                 MessageBox.Show("True");
                 Login.Visibility = Visibility.Collapsed;
@@ -126,6 +127,12 @@ namespace chatbotWPF
             //_ = APIConnection.SendPrompt(prompt);
 
             //Checka Inloggning
+        }
+
+        private async void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            var sendAttempt = new Send() {Target=1 };
+            await APIConnection.SendPrompt(sendAttempt);
         }
     }
 }

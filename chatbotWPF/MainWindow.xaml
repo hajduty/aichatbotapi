@@ -15,8 +15,8 @@
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
-            <TextBox Height="72" Width="350" FontSize="50" Text="Username" GotFocus="ClearTextOnFocus"/>
-            <TextBox Height="72" Width="350" Grid.Row="1" FontSize="50" Text="Password" GotFocus="ClearTextOnFocus"/>
+            <TextBox Name="loginName" Height="72" Width="350" FontSize="50" Text="Username" GotFocus="ClearTextOnFocus"/>
+            <TextBox Name="loginPass" Height="72" Width="350" Grid.Row="1" FontSize="50" Text="Password" GotFocus="ClearTextOnFocus"/>
             <Button Height="100" Width="300" Grid.Row="2" Content="Login" Background="Red" Foreground="White" FontSize="60" Click="Button_Click_1"/>
         </Grid>
         
@@ -39,6 +39,10 @@
 
             <Button Background="Red" Grid.Row="2" Height="100" Width="250" FontSize="50" Foreground="White" Click="Button_Click">
                 Select
+            </Button>
+
+            <Button Background="Red" Grid.Row="2" Height="50" Width="50" FontSize="5" Foreground="White"  VerticalAlignment="Bottom" Click="Button_Click_3">
+                Test
             </Button>
         </Grid>
 

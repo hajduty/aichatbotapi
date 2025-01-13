@@ -54,6 +54,7 @@ namespace chatbotWPF
         }
 
         // TODO: Se till att vi skickar rätt JSON som API vill ha, just nu skickas modellen "Send", byt i API
+
         static public async Task SendPrompt(Send prompt)
         {
             using (HttpClient client = new HttpClient())
@@ -69,10 +70,12 @@ namespace chatbotWPF
                     Debug.WriteLine(apiUrl);
                     // Send POST request
                     HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
                     response.EnsureSuccessStatusCode(); // Throw if not a success code
 
                     string responseBody = await response.Content.ReadAsStringAsync();
                     Debug.WriteLine("Response from server: " + responseBody);
+                    MessageBox.Show("Response from server: " + responseBody);
                 }
                 catch (HttpRequestException e)
                 {
