@@ -70,11 +70,7 @@ namespace chatbotWPF
 
 		private void Ellipse_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
 		{
-			// Reset all ellipse fills to white and borders to transparent
-			Button1.Fill = Brushes.White;
-			Button2.Fill = Brushes.White;
-			Button3.Fill = Brushes.White;
-
+            // Reset all ellipse fills to white and borders to transparent
 			Border1.BorderBrush = Brushes.Transparent;
 			Border2.BorderBrush = Brushes.Transparent;
 			Border3.BorderBrush = Brushes.Transparent;
@@ -82,19 +78,16 @@ namespace chatbotWPF
 			// Handle selection for the clicked ellipse
 			if (sender == Button1)
 			{
-				Button1.Fill = Brushes.Blue;
 				Border1.BorderBrush = Brushes.Green;
 				test.Target = 1;
 			}
 			else if (sender == Button2)
 			{
-				Button2.Fill = Brushes.Blue;
 				Border2.BorderBrush = Brushes.Green;
 				test.Target = 2;
 			}
 			else if (sender == Button3)
 			{
-				Button3.Fill = Brushes.Blue;
 				Border3.BorderBrush = Brushes.Green;
 				test.Target = 3;
 			}
