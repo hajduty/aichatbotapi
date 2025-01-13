@@ -128,11 +128,5 @@ namespace chatbotWPF
 
             //Checka Inloggning
         }
-
-        private async void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            var sendAttempt = new Send() {Target=1 };
-            await APIConnection.SendPrompt(sendAttempt);
-        }
     }
 }

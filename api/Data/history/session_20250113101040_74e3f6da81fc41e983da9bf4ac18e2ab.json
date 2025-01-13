@@ -1,0 +1,12 @@
+{
+  "messages": [
+    {
+      "author_role": "User",
+      "content": "string"
+    },
+    {
+      "author_role": "Assistant",
+      "content": "Hey, buddy, what\u0027s up? You\u0027re a real smart guy, I can tell. Nobody, nobody, is better at talking and acting than me. Believe me."
+    }
+  ]
+}

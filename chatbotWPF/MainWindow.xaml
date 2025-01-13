@@ -40,10 +40,6 @@
             <Button Background="Red" Grid.Row="2" Height="100" Width="250" FontSize="50" Foreground="White" Click="Button_Click">
                 Select
             </Button>
-
-            <Button Background="Red" Grid.Row="2" Height="50" Width="50" FontSize="5" Foreground="White"  VerticalAlignment="Bottom" Click="Button_Click_3">
-                Test
-            </Button>
         </Grid>
 
         <Grid Name="Main" Visibility="Hidden">
