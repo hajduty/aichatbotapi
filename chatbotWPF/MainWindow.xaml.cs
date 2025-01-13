@@ -84,5 +84,29 @@ namespace chatbotWPF
 				test.Target = 3;
 			}
 		}
-	}
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //Fel hantering | Fel lösen / namn eller server problem, just nu bara Ja eller Nej
+            var loginAttempt = await APIConnection.Login(loginName.Text, loginPass.Text);
+
+            if (loginAttempt == true)
+            {
+                MessageBox.Show("True");
+                Login.Visibility = Visibility.Collapsed;
+                Enter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("False");
+            }
+
+            //Send prompt = new Send();
+            //prompt.Target = test.Target;
+            //prompt.Name = test.Name;
+            //prompt.Message = chatHistory.Text;
+            //_ = APIConnection.SendPrompt(prompt);
+
+            //Checka Inloggning
+        }
+    }
 }
