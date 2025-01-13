@@ -105,8 +105,8 @@
                     Save to file
                 </Button>
             </Grid>
-
-            <TextBlock Name="chatHistory" IsEnabled="False" Background="White" Height="350" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20" TextWrapping="Wrap"/>
+            
+            <TextBox Name="chatHistory" IsEnabled="False" Background="White" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True"/>
         </Grid>
     </Grid>
 </Window>
