@@ -21,7 +21,7 @@
                 <Border Name="Border1" BorderThickness="4" BorderBrush="Transparent" CornerRadius="50" Margin="8">
                     <Ellipse Name="Button1" Width="100" Height="100" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="C:\Users\H\source\repos\chatbotV2\chatbotWPF\Images\38dbabe5-5ac4-4749-8adb-4b50e559be77.jpg" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="Images\38dbabe5-5ac4-4749-8adb-4b50e559be77.jpg" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Border>
@@ -29,7 +29,7 @@
                 <Border Name="Border2" BorderThickness="4" BorderBrush="Transparent" CornerRadius="50" Margin="8">
                     <Ellipse Name="Button2" Width="100" Height="100" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="C:\Users\H\source\repos\chatbotV2\chatbotWPF\Images\download.jpg" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="Images\download.jpg" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Border>
@@ -37,7 +37,7 @@
                 <Border Name="Border3" BorderThickness="4" BorderBrush="Transparent" CornerRadius="50" Margin="8">
                     <Ellipse Name="Button3" Width="100" Height="100" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="C:\Users\H\source\repos\chatbotV2\chatbotWPF\Images\flat,750x,075,f-pad,750x1000,f8f8f8.jpg" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="Images\flat,750x,075,f-pad,750x1000,f8f8f8.jpg" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Border>
