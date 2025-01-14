@@ -10,6 +10,7 @@ namespace chatbotWPF
 	public partial class MainWindow : Window
 	{
 		FirstSend test = new FirstSend();
+		static string sessionId = null;
 
 		public MainWindow()
 		{
@@ -42,10 +43,11 @@ namespace chatbotWPF
         {
             textToSend.IsEnabled = false;
 			sendButton.IsEnabled = false;
-            var prompt = new Send() { Name = test.Name, Message = textToSend.Text }; //Fixa denna
+            var prompt = new Send() { Name = test.Name, Message = textToSend.Text, SessionId = sessionId}; //Fixa denna
 
             chatHistory.Text += "You: " + textToSend.Text + "\n";
             var test2 = await APIConnection.SendPrompt(prompt, "1");
+            sessionId = test2.SessionId;
 
             chatHistory.Text += "Bot: " + test2.Response + "\n";
 

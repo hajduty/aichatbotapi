@@ -9,7 +9,7 @@
         Background="#1A1A1A">
 
     <Grid>
-        <Grid Name="Login" Visibility="Hidden" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
+        <Grid Name="Login" Visibility="Visible" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="30*"/>
@@ -64,7 +64,7 @@
         </Grid>
 
         <!-- Main Chat Page -->
-        <Grid Name="Main" Visibility="Visible" Background="#1A1A1A">
+        <Grid Name="Main" Visibility="Hidden" Background="#1A1A1A">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
