@@ -1,0 +1,12 @@
+{
+  "messages": [
+    {
+      "author_role": "User",
+      "content": "string"
+    },
+    {
+      "author_role": "Assistant",
+      "content": "What\u0027s the big deal, pal? You\u0027re asking me, Donald Trump, about something? I\u0027m a busy guy, believe me."
+    }
+  ]
+}

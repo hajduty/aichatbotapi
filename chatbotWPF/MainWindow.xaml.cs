@@ -38,13 +38,16 @@ namespace chatbotWPF
 			user.Text = test.Name + " " + test.Target;
 		}
 
-        private void Button_Send_Click(object sender, RoutedEventArgs e)
+        private async void Button_Send_Click(object sender, RoutedEventArgs e)
         {
+            var test = new Send() { Name = "Test", Message = textToSend.Text }; //Fixa denna
+
             chatHistory.Text += "You: " + textToSend.Text + "\n";
-            chatHistory.Text += "Bot: " + "Jag håller med!" + "\n";
+            var test2 = await APIConnection.SendPrompt(test, "1");
+
+            chatHistory.Text += "Bot: " + test2.Response + "\n";
             textToSend.Text = string.Empty;
 
-            
             //Enter.Visibility = Visibility.Visible;
             //Main.Visibility = Visibility.Hidden;
         }
