@@ -9,7 +9,45 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <None Remove="Images\19dnmc00554a-006-donald-jump-66-100-swatch_800x.webp" />
+    <None Remove="Images\38dbabe5-5ac4-4749-8adb-4b50e559be77.jpg" />
+    <None Remove="Images\74484537007-usatsi-23609946-1.webp" />
+    <None Remove="Images\ai-generated-8201383_1280.webp" />
+    <None Remove="Images\david_-_the_death_of_socrates_inline.jpg" />
+    <None Remove="Images\download.jpg" />
+    <None Remove="Images\eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3NhbnRhLWNsYXVzLTguanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9fX0=.webp" />
+    <None Remove="Images\flat,750x,075,f-pad,750x1000,f8f8f8.jpg" />
+    <None Remove="Images\images %281%29.jpg" />
+    <None Remove="Images\images.jpg" />
+    <None Remove="Images\intro-1584137078.jpg" />
+    <None Remove="Images\lincoln-lead %281%29.avif" />
+    <None Remove="Images\lincoln-lead.avif" />
+    <None Remove="Images\m_gen_art-print-std-portrait-p1_938f07f3-5437-41ed-86ee-aea06ca21094.avif" />
+    <None Remove="Images\Theodore-Roosevelt.jpg" />
+    <None Remove="Images\yoda-the-empire-strikes-back-28a7558.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\19dnmc00554a-006-donald-jump-66-100-swatch_800x.webp" />
+    <Resource Include="Images\38dbabe5-5ac4-4749-8adb-4b50e559be77.jpg" />
+    <Resource Include="Images\74484537007-usatsi-23609946-1.webp" />
+    <Resource Include="Images\ai-generated-8201383_1280.webp" />
+    <Resource Include="Images\david_-_the_death_of_socrates_inline.jpg" />
+    <Resource Include="Images\download.jpg" />
+    <Resource Include="Images\eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3NhbnRhLWNsYXVzLTguanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9fX0=.webp" />
+    <Resource Include="Images\flat,750x,075,f-pad,750x1000,f8f8f8.jpg" />
+    <Resource Include="Images\images (1).jpg" />
+    <Resource Include="Images\images.jpg" />
+    <Resource Include="Images\intro-1584137078.jpg" />
+    <Resource Include="Images\lincoln-lead (1).avif" />
+    <Resource Include="Images\lincoln-lead.avif" />
+    <Resource Include="Images\m_gen_art-print-std-portrait-p1_938f07f3-5437-41ed-86ee-aea06ca21094.avif" />
+    <Resource Include="Images\Theodore-Roosevelt.jpg" />
+    <Resource Include="Images\yoda-the-empire-strikes-back-28a7558.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
