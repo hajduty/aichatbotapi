@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using chatbotWPF.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace chatbotWPF
 {
@@ -55,32 +57,25 @@ namespace chatbotWPF
 
         // TODO: Se till att vi skickar rätt JSON som API vill ha, just nu skickas modellen "Send", byt i API
 
-        static public async Task SendPrompt(Send prompt)
+        static public async Task<AiResponse> SendPrompt(Send prompt, string presidentId)
         {
             using (HttpClient client = new HttpClient())
             {
-                try
-                {
-                    // Replace with your API URL
-                    string apiUrl = $"https://localhost:7006/api/LLaMa/send/" + prompt.Target;
+                string apiUrl = $"https://localhost:7006/LLama/send/" + presidentId;
 
-                    // Serialize the data to JSON
-                    string jsonData = JsonConvert.SerializeObject(prompt);
-                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                    Debug.WriteLine(apiUrl);
-                    // Send POST request
-                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                string jsonData = JsonConvert.SerializeObject(prompt);
+                client.Timeout = TimeSpan.FromMinutes(5);
 
-                    response.EnsureSuccessStatusCode(); // Throw if not a success code
+                var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    Debug.WriteLine("Response from server: " + responseBody);
-                    MessageBox.Show("Response from server: " + responseBody);
-                }
-                catch (HttpRequestException e)
-                {
-                    Console.WriteLine("Request error: " + e.Message);
-                }
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<AiResponse>(responseBody);
+                Debug.WriteLine(responseBody);
+                return result;
+
             }
         }
     }
