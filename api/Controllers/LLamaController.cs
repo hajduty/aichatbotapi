@@ -102,7 +102,7 @@ namespace api.Controllers
 
                 if (history == null)
                 {
-                    return NotFound("Session not found.");
+                    history = new ChatHistory();
                 }
 
                 session = new ChatSession(_executor, history);
