@@ -9,15 +9,26 @@
         Background="#1A1A1A">
 
     <Grid>
-        <Grid Name="Login" Visibility="Hidden" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
+        <!-- Login Grid -->
+        <Grid Name="Login" Visibility="Visible" Background="#1A1A1A" 
+              HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
-            <TextBox Name="loginName" Height="72" Width="350" FontSize="50" Text="Username" GotFocus="ClearTextOnFocus"/>
-            <TextBox Name="loginPass" Height="72" Width="350" Grid.Row="1" FontSize="50" Text="Password" GotFocus="ClearTextOnFocus"/>
-            <Button Height="100" Width="300" Grid.Row="2" Content="Login" Background="Red" Foreground="White" FontSize="60" Click="Button_Click_1"/>
+            <!-- Username TextBox -->
+            <TextBox Name="loginName" Height="72" Width="350" FontSize="50" Text="Username" 
+                     GotFocus="ClearTextOnFocus" Background="#333333" Foreground="#FFFFFF" 
+                     BorderBrush="#5A5A5A" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <!-- Password TextBox -->
+            <TextBox Name="loginPass" Height="72" Width="350" Grid.Row="1" FontSize="50" Text="Password" 
+                     GotFocus="ClearTextOnFocus" Background="#333333" Foreground="#FFFFFF" 
+                     BorderBrush="#5A5A5A" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <!-- Login Button -->
+            <Button Height="100" Width="300" Grid.Row="2" Content="Login" Background="#4CAF50" 
+                    Foreground="White" FontSize="60" Click="Button_Click_1" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         
         <Grid Name="Enter" Visibility="Hidden" Background="LightSlateGray" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
@@ -64,7 +75,7 @@
         </Grid>
 
         <!-- Main Chat Page -->
-        <Grid Name="Main" Visibility="Visible" Background="#1A1A1A">
+        <Grid Name="Main" Visibility="Hidden" Background="#1A1A1A">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
