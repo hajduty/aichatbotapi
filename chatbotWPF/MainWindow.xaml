@@ -112,7 +112,7 @@
                 <Button Width="200" Height="50" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="10,0,0,0" Background="#4CAF50" Foreground="#FFFFFF" Click="Button_Send_Click" >
                     Send
                 </Button>
-                <Button Width="200" Height="50" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="10,0,20,0" Background="#555555" Foreground="#FFFFFF" Click="Button_Click_2">
+                <Button Name="sendButton" Width="200" Height="50" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="10,0,20,0" Background="#555555" Foreground="#FFFFFF" Click="Button_Click_2">
                     Save to file
                 </Button>
             </Grid>
