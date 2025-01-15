@@ -36,7 +36,6 @@ namespace chatbotWPF
 			}
 
 			test.Name = nameB.Text.ToString();
-			user.Text = test.Name + " " + test.Target;
 		}
 
         private async void Button_Send_Click(object sender, RoutedEventArgs e)

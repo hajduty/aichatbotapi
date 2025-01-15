@@ -64,7 +64,7 @@
         </Grid>
 
         <!-- Main Chat Page -->
-        <Grid Name="Main" Visibility="Hidden" Background="#1A1A1A">
+        <Grid Name="Main" Visibility="Visible" Background="#1A1A1A">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -75,13 +75,8 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="80*"/>
-                    <RowDefinition Height="10*"/>
-                </Grid.RowDefinitions>
                 <!-- Profile Section -->
                 <Ellipse Fill="#FFFFFF" Width="360" Height="360"/>
-                <TextBlock Name="user" Background="#333333" Width="400" Height="50" VerticalAlignment="Bottom" Grid.Row="1" Foreground="#FFFFFF" FontSize="24" TextAlignment="Center"/>
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">
