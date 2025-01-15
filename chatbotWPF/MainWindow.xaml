@@ -31,6 +31,7 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
+
         <Grid Name="Enter" Visibility="Hidden" Background="#333333" HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="450">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -111,8 +112,8 @@
                     Save to file
                 </Button>
             </Grid>
-            
-            <TextBox Name="chatHistory" IsReadOnly="True" Background="White" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True"/>
+
+            <TextBox Name="chatHistory" IsReadOnly="True" Background="#FF333333" Grid.ColumnSpan="2" FontSize="20" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True" Margin="25,25,25,25" Foreground="#FFD9D9D9" SelectionTextBrush="#FF767676" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>
