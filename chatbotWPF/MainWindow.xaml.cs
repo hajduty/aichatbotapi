@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace chatbotWPF
@@ -72,24 +73,31 @@ namespace chatbotWPF
 			Border1.BorderBrush = Brushes.Transparent;
 			Border2.BorderBrush = Brushes.Transparent;
 			Border3.BorderBrush = Brushes.Transparent;
+            var imageBrush = new ImageBrush();
 
-			// Handle selection for the clicked ellipse
-			if (sender == Button1)
+
+            // Handle selection for the clicked ellipse
+            if (sender == Button1)
 			{
 				Border1.BorderBrush = Brushes.Green;
-				test.Target = 1;
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/38dbabe5-5ac4-4749-8adb-4b50e559be77.jpg"));
+                test.Target = 1;
 			}
 			else if (sender == Button2)
 			{
 				Border2.BorderBrush = Brushes.Green;
-				test.Target = 2;
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/download.jpg"));
+                test.Target = 2;
 			}
 			else if (sender == Button3)
 			{
 				Border3.BorderBrush = Brushes.Green;
-				test.Target = 3;
+                imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/flat,750x,075,f-pad,750x1000,f8f8f8.jpg"));
+                test.Target = 3;
 			}
-		}
+            buddy.Fill = imageBrush;
+
+        }
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //Fel hantering | Fel lösen / namn eller server problem, just nu bara Ja eller Nej
