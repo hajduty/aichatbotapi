@@ -109,10 +109,10 @@
                 <TextBox Name="textToSend" Height="220" Width="460" Grid.ColumnSpan="2" Background="#333333" Foreground="#FFFFFF" BorderBrush="#5A5A5A" Text="Type your message..." FontSize="16" TextWrapping="Wrap" GotFocus="ClearTextOnFocus"/>
 
                 <!-- Send and Save Buttons -->
-                <Button Width="200" Height="50" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="10,0,0,0" Background="#4CAF50" Foreground="#FFFFFF" Click="Button_Send_Click" >
+                <Button Name="sendButton" Width="200" Height="50" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="10,0,0,0" Background="#4CAF50" Foreground="#FFFFFF" Click="Button_Send_Click" >
                     Send
                 </Button>
-                <Button Name="sendButton" Width="200" Height="50" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="10,0,20,0" Background="#555555" Foreground="#FFFFFF" Click="Button_Click_2">
+                <Button Width="200" Height="50" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="10,0,20,0" Background="#555555" Foreground="#FFFFFF" Click="Button_Click_2">
                     Save to file
                 </Button>
             </Grid>
