@@ -75,7 +75,7 @@
         </Grid>
 
         <!-- Main Chat Page -->
-        <Grid Name="Main" Visibility="Visible" Background="#1A1A1A">
+        <Grid Name="Main" Visibility="Hidden" Background="#1A1A1A">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
