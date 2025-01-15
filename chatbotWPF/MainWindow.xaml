@@ -87,7 +87,7 @@
 
             <Grid Grid.Row="0" Grid.Column="0">
                 <!-- Profile Section -->
-                <Ellipse Fill="#FFFFFF" Width="360" Height="360"/>
+                <Ellipse Name="buddy" Fill="#FFFFFF" Width="360" Height="360"/>
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1">
@@ -112,7 +112,7 @@
                 </Button>
             </Grid>
             
-            <TextBox Name="chatHistory" IsEnabled="False" Background="White" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True"/>
+            <TextBox Name="chatHistory" IsReadOnly="True" Background="White" Width="1050" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20" TextWrapping="Wrap" ScrollViewer.CanContentScroll="True"/>
         </Grid>
     </Grid>
 </Window>
