@@ -49,7 +49,8 @@ namespace chatbotWPF
             var test2 = await APIConnection.SendPrompt(prompt, "1");
             sessionId = test2.SessionId;
 
-            chatHistory.Text += "Bot: " + test2.Response + "\n";
+            chatHistory.Text += "Bot: " + test2.Response + "\n\n";
+			chatHistory.ScrollToEnd();
 
             textToSend.Text = string.Empty;
 			textToSend.IsEnabled = true;
@@ -74,7 +75,6 @@ namespace chatbotWPF
 			Border2.BorderBrush = Brushes.Transparent;
 			Border3.BorderBrush = Brushes.Transparent;
             var imageBrush = new ImageBrush();
-
 
             // Handle selection for the clicked ellipse
             if (sender == Button1)
