@@ -10,6 +10,7 @@ namespace chatbotWPF
 	public partial class MainWindow : Window
 	{
 		FirstSend test = new FirstSend();
+		static string sessionId = null;
 
 		public MainWindow()
 		{
@@ -40,16 +41,19 @@ namespace chatbotWPF
 
         private async void Button_Send_Click(object sender, RoutedEventArgs e)
         {
-            var test = new Send() { Name = "Test", Message = textToSend.Text }; //Fixa denna
+            textToSend.IsEnabled = false;
+			sendButton.IsEnabled = false;
+            var prompt = new Send() { Name = test.Name, Message = textToSend.Text, SessionId = sessionId}; //Fixa denna
 
             chatHistory.Text += "You: " + textToSend.Text + "\n";
-            var test2 = await APIConnection.SendPrompt(test, "1");
+            var test2 = await APIConnection.SendPrompt(prompt, "1");
+            sessionId = test2.SessionId;
 
             chatHistory.Text += "Bot: " + test2.Response + "\n";
-            textToSend.Text = string.Empty;
 
-            //Enter.Visibility = Visibility.Visible;
-            //Main.Visibility = Visibility.Hidden;
+            textToSend.Text = string.Empty;
+			textToSend.IsEnabled = true;
+			sendButton.IsEnabled = true;
         }
 
 		private void ClearTextOnFocus(object sender, RoutedEventArgs e)
@@ -102,14 +106,6 @@ namespace chatbotWPF
             {
                 MessageBox.Show("False");
             }
-
-            //Send prompt = new Send();
-            //prompt.Target = test.Target;
-            //prompt.Name = test.Name;
-            //prompt.Message = chatHistory.Text;
-            //_ = APIConnection.SendPrompt(prompt);
-
-            //Checka Inloggning
         }
     }
 }
