@@ -17,6 +17,7 @@
     <None Remove="Images\download.jpg" />
     <None Remove="Images\eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3NhbnRhLWNsYXVzLTguanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9fX0=.webp" />
     <None Remove="Images\flat,750x,075,f-pad,750x1000,f8f8f8.jpg" />
+    <None Remove="Images\GettyImages-903030184-1024x683.png" />
     <None Remove="Images\images %281%29.jpg" />
     <None Remove="Images\images.jpg" />
     <None Remove="Images\intro-1584137078.jpg" />
@@ -36,6 +37,7 @@
     <Resource Include="Images\download.jpg" />
     <Resource Include="Images\eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3NhbnRhLWNsYXVzLTguanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9fX0=.webp" />
     <Resource Include="Images\flat,750x,075,f-pad,750x1000,f8f8f8.jpg" />
+    <Resource Include="Images\GettyImages-903030184-1024x683.png" />
     <Resource Include="Images\images (1).jpg" />
     <Resource Include="Images\images.jpg" />
     <Resource Include="Images\intro-1584137078.jpg" />

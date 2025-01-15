@@ -41,20 +41,34 @@ namespace chatbotWPF
 
         private async void Button_Send_Click(object sender, RoutedEventArgs e)
         {
-            textToSend.IsEnabled = false;
-			sendButton.IsEnabled = false;
-            var prompt = new Send() { Name = test.Name, Message = textToSend.Text, SessionId = sessionId}; //Fixa denna
+            if (string.IsNullOrEmpty(textToSend.Text)) 
+            {
+                MessageBox.Show("Write something!");
+            }
 
-            chatHistory.Text += "You: " + textToSend.Text + "\n";
-            var test2 = await APIConnection.SendPrompt(prompt, "1");
-            sessionId = test2.SessionId;
+            else
+            {
+                int count = 0;
+                thinking(test.Target, count);
+                count = 1;
 
-            chatHistory.Text += "Bot: " + test2.Response + "\n\n";
-			chatHistory.ScrollToEnd();
+                textToSend.IsEnabled = false;
+                sendButton.IsEnabled = false;
+                var prompt = new Send() { Name = test.Name, Message = textToSend.Text, SessionId = sessionId }; //Fixa denna
 
-            textToSend.Text = string.Empty;
-			textToSend.IsEnabled = true;
-			sendButton.IsEnabled = true;
+                chatHistory.Text += "You: " + textToSend.Text + "\n";
+                var test2 = await APIConnection.SendPrompt(prompt, "1");
+                sessionId = test2.SessionId;
+
+                thinking(test.Target, count);
+
+                chatHistory.Text += "Bot: " + test2.Response + "\n\n";
+                chatHistory.ScrollToEnd();
+
+                textToSend.Text = string.Empty;
+                textToSend.IsEnabled = true;
+                sendButton.IsEnabled = true;
+            }
         }
 
 		private void ClearTextOnFocus(object sender, RoutedEventArgs e)
@@ -114,5 +128,41 @@ namespace chatbotWPF
                 MessageBox.Show("False");
             }
         }
+		private void thinking(int person, int count)
+		{
+            var imageBrush = new ImageBrush();
+
+			if(count == 0)      //Normal
+			{
+                switch (person)
+                {
+                    case 1:
+                        imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/GettyImages-903030184-1024x683.png"));
+                        buddy.Fill = imageBrush;
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+
+                }
+            }
+            
+			else if (count == 1)    //Thinking 
+			{
+                switch (person)
+                {
+                    case 1:
+                        imageBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/38dbabe5-5ac4-4749-8adb-4b50e559be77.jpg"));
+                        buddy.Fill = imageBrush;
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+
+                }
+            }
+		}
     }
 }

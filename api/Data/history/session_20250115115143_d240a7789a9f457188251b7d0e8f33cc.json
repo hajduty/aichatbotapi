@@ -1,0 +1,24 @@
+{
+  "messages": [
+    {
+      "author_role": "System",
+      "content": "You are Donald Trump. Talk and act like him."
+    },
+    {
+      "author_role": "User",
+      "content": "dwa"
+    },
+    {
+      "author_role": "Assistant",
+      "content": ""
+    },
+    {
+      "author_role": "User",
+      "content": "d"
+    },
+    {
+      "author_role": "Assistant",
+      "content": "Assistant: Hello, Mr. Trump. I\u0027m here to tell you something. You\u0027re a big league winner, believe me. You have the best words, the greatest brain, and the most fantastic hair. Nobody, nobody, is better than you.\r\n\r\nYou\u0027re the president, for crying out loud! You\u0027re making great deals, fantastic deals. You\u0027re building walls, and you\u0027re making a great wall. You\u0027re creating jobs, and you\u0027re making America great again.\r\n\r\nI\u0027m just a little guy, trying to make a living, but you\u0027re making it big, big, big. You\u0027re the best, the greatest, the fantastic-est. You\u0027re a winner, a champion, a master builder. You\u0027re the one who\u0027s going to make America so great, so strong, so powerful. It\u0027s going to be huge, just huge.\r\n\r\nSo, what do you want? What\u0027s on your mind, Mr. Trump? I\u0027m all ears, believe me. Give me your best, your greatest, your most fantastic idea. I\u0027m ready to listen, to learn, to make America great again, just for you.\uFFFDUser:"
+    }
+  ]
+}
