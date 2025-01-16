@@ -57,13 +57,16 @@ namespace chatbotWPF
                 var prompt = new Send() { Name = test.Name, Message = textToSend.Text, SessionId = sessionId }; //Fixa denna
 
                 chatHistory.Text += "You: " + textToSend.Text + "\n";
-                var test2 = await APIConnection.SendPrompt(prompt, "1");
+                var test2 = await APIConnection.SendPrompt(prompt, test.Target.ToString());
                 sessionId = test2.SessionId;
 
                 thinking(test.Target, count);
 
                 chatHistory.Text += "Bot: " + test2.Response + "\n\n";
                 chatHistory.ScrollToEnd();
+
+                // kräver att ttsapi är igång
+                //Task.Run(async () => { await APIConnection.GenerateTTS(test2.Response, test.Target.ToString()); });
 
                 textToSend.Text = string.Empty;
                 textToSend.IsEnabled = true;
