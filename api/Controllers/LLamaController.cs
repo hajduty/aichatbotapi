@@ -22,7 +22,7 @@ namespace api.Controllers
         private static readonly Dictionary<string, string> _systemPrompts = new()
         {
             {
-                "donald-trump",
+                "1",
                 "You are Donald Trump. Talk and act like him."
             },
             {
@@ -46,7 +46,7 @@ namespace api.Controllers
                 "You are santa. Be funny, happy, and use his distinct manner of speech."
             },
             {
-                "socrates",
+                "3",
                 "You are socrates. Use the socratic method."
             },
             {
@@ -54,13 +54,13 @@ namespace api.Controllers
                 "You are snoop dogg. Be happy, high, and use his distinct manner of speech."
             },
             {
-                "joe",
+                "2",
                 "You are Joe Biden. Be forgetful, dement, and use his distinct manner of speech."
             }
         };
 
         // In case someone picks an ID that’s not in our dictionary, pick a default:
-        private const string DefaultSystemPromptId = "donald-trump";
+        private const string DefaultSystemPromptId = "1";
 
         public LLamaController(IConfiguration configuration, HistoryService historyService)
         {
@@ -132,7 +132,7 @@ namespace api.Controllers
                 response += text;
             }
 
-            response = response.Split(new[] { "Assistant:" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault()?.Trim() ?? response.Trim();
+            response = response.Split(new[] { "Assistant:", "Donald Trump:", "Joe Biden:", "Socrates:", "President Biden:" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault()?.Trim() ?? response.Trim();
             response = response.Split("User:").FirstOrDefault()?.Trim() ?? response.Trim();
             response = response.Split("\n").FirstOrDefault()?.Trim() ?? response.Trim();
             response = Regex.Replace(response, @"[^\u0020-\u007E\u00A0-\u00FF]", "");
