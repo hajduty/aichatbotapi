@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -75,7 +76,24 @@ namespace chatbotWPF
                 var result = JsonConvert.DeserializeObject<AiResponse>(responseBody);
                 Debug.WriteLine(responseBody);
                 return result;
+            }
+        }
 
+        public static async Task GenerateTTS(string text, string voice)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string apiUrl = $"http://localhost:5000/generate";
+                string jsonData = JsonConvert.SerializeObject(new { text = text, voice = voice });
+                var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                response.EnsureSuccessStatusCode();
+
+                var _audioData = new MemoryStream();
+                await response.Content.CopyToAsync(_audioData);
+                _audioData.Position = 0;
+                utils.PlayAudioFromStream(_audioData);
             }
         }
     }
